@@ -1,4 +1,5 @@
 ﻿using DotNet.Backend.Startup;
+using DotNet.Data.Data;
 using DotNet.WPF.DataContext;
 using DotNet.WPF.Windows;
 using System;
@@ -31,9 +32,11 @@ namespace DotNet.WPF
             appMainWindow.DataContext = new AppMainWindowDataContext();
             appMainWindow.Show();
 
+            //ApplicationDBContext applicationDBContext = new ApplicationDBContext(DBContextOptionsFactory.GetOptions());
+
         }
 
-
+        
 
 
 

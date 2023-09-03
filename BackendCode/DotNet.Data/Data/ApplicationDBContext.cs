@@ -19,6 +19,7 @@ namespace DotNet.Data.Data
         /// <param name="options">The DbContextOptions to be used for configuration.</param>
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
+
         }
 
         #region DBSet
@@ -27,6 +28,8 @@ namespace DotNet.Data.Data
         // For example:
         // public DbSet<User> Users { get; set; }
         // public DbSet<Order> Orders { get; set; }
+        public DbSet<DBModel.Class> Orders { get; set; }
+
 
         #endregion
 

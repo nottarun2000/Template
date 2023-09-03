@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DotNet.Data\DotNet.Data.csproj" />
+    <ProjectReference Include="..\DotNet.gRPC\DotNet.gRPC.csproj" />
     <ProjectReference Include="..\ObserverMessenger\ObserverMessenger.csproj" />
   </ItemGroup>
 

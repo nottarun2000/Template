@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.Backend", "DotNet.Backend.csproj", "{C02F2273-98AF-41E4-A848-5AF3487087D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.Backend", "DotNet.Backend.csproj", "{C02F2273-98AF-41E4-A848-5AF3487087D6}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.Data", "..\DotNet.Data\DotNet.Data.csproj", "{6FE68056-BDE0-430F-8491-49AB04722E0B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ObserverMessenger", "..\ObserverMessenger\ObserverMessenger.csproj", "{3D39EC80-E63C-4965-BB51-70FB60E2BC08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ObserverMessenger", "..\ObserverMessenger\ObserverMessenger.csproj", "{3D39EC80-E63C-4965-BB51-70FB60E2BC08}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.WPF", "..\DotNet.WPF\DotNet.WPF.csproj", "{D89B3763-85DC-4807-B33B-3D2433826937}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DotNet.WPF", "..\DotNet.WPF\DotNet.WPF.csproj", "{D89B3763-85DC-4807-B33B-3D2433826937}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNet.gRPC", "..\DotNet.gRPC\DotNet.gRPC.csproj", "{D5FE74CF-47F0-4763-A317-951E0F74B170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D89B3763-85DC-4807-B33B-3D2433826937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D89B3763-85DC-4807-B33B-3D2433826937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D89B3763-85DC-4807-B33B-3D2433826937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5FE74CF-47F0-4763-A317-951E0F74B170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5FE74CF-47F0-4763-A317-951E0F74B170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5FE74CF-47F0-4763-A317-951E0F74B170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5FE74CF-47F0-4763-A317-951E0F74B170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

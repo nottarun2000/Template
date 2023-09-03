@@ -1,0 +1,25 @@
+syntax = "proto3";
+
+option csharp_namespace = "DotNet.gRPC.Protos";
+
+package communicate;
+
+// The greeting service definition.
+service Communicate {
+
+  // Bi-directional stream rpc
+  rpc StreamSpeaker (stream Msg) returns (stream Msg);
+
+  // Unary rpc
+  rpc Speaker (Msg) returns (Msg);
+
+}
+
+// The request and response message containing message , clientId and type of message sent
+message Msg {
+
+  string message = 1;
+  string clientIdentity = 2;
+  string serverMessageType = 3;
+
+}

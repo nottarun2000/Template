@@ -1,4 +1,5 @@
-﻿using DotNet.WPF.ApplicationFunction;
+﻿using DotNet.gRPC.Wrapper;
+using DotNet.WPF.ApplicationFunction;
 using DotNet.WPF.Command;
 using PropertyChanged;
 using System;
@@ -11,10 +12,11 @@ using static DotNet.Backend.Communication.Messenger.MessengerClasses;
 
 namespace DotNet.WPF.DataContext
 {
-    [AddINotifyPropertyChangedInterface]
-    public class AppMainWindowDataContext
+    
+    public class AppMainWindowDataContext : BaseViewDataContext
     {
         public BaseViewDataContext ActiveMainWindowDC { get; set; }
+        public string CurrentPage { get; set; }
 
         #region ICommand
 
@@ -26,6 +28,7 @@ namespace DotNet.WPF.DataContext
         {
             // Initialize the ActiveMainWindowDC with the MainPageDataContext.
             ActiveMainWindowDC = new MainPageDataContext();
+            CurrentPage = "MainPage";
 
             // Create a RelayCommand for changing the current page and checking if it can be executed.
             ChangeCurrentPageCommand = new RelayCommand(this.OnChangeCurrentPage, this.CanExecuteChangeCurrentPage);
@@ -52,9 +55,13 @@ namespace DotNet.WPF.DataContext
             {
                 case AppPage.MainPage:
                     ActiveMainWindowDC = new MainPageDataContext();
+                    CurrentPage = "MainPage";
+
                     break;
                 case AppPage.SecondPage:
                     ActiveMainWindowDC = new SecondPageDataContext();
+                    CurrentPage = "SecondPage";
+
                     break;
             }
         }
@@ -76,5 +83,51 @@ namespace DotNet.WPF.DataContext
             // If no exception occurs, return true to indicate it can be executed.
             return true;
         }
+
+
+
+        public void StartgRPC(object obj)
+        {
+            try
+            {
+                var server = new gRPCServer("localhost", 5000);
+
+                server.ClientConnected += (sender, e) => {
+
+                };
+
+                server.ClientDisconnected += (sender, e) => {
+
+                };
+
+                server.MessageReceived += (sender, e) => {
+
+                    if (CurrentPage == "MainPage")
+                    {
+                        ObserverMessenger.Observer.Instance.Notify(new NavigatePageTo("SecondPage"));
+
+                    }
+                    else
+                    {
+                        ObserverMessenger.Observer.Instance.Notify(new NavigatePageTo("MainPage"));
+
+                    }
+
+                };
+
+                server.ExceptionOccurred += (sender, e) => {
+
+                };
+
+                server.StartServer();
+
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+        }
+
     }
 }

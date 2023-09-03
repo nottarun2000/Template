@@ -28,11 +28,20 @@ namespace DotNet.WPF
         {
             // Initialize theme
 
-            AppMainWindow appMainWindow = new AppMainWindow();
-            appMainWindow.DataContext = new AppMainWindowDataContext();
-            appMainWindow.Show();
-
-            //ApplicationDBContext applicationDBContext = new ApplicationDBContext(DBContextOptionsFactory.GetOptions());
+            if (e.Args.Count() == 0)  // starting server
+            {
+                AppMainWindow appMainWindow = new AppMainWindow();
+                var temp = new AppMainWindowDataContext();
+                temp.StartgRPC(null);
+                appMainWindow.DataContext = temp;
+                appMainWindow.Show();
+            }
+            else
+            { 
+                SecondWindow secondWindow = new SecondWindow();
+                secondWindow.DataContext = new SecondWindowDataContext();
+                secondWindow.Show();
+            }
 
         }
 

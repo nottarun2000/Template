@@ -12,7 +12,6 @@ using static DotNet.Backend.Communication.Messenger.MessengerClasses;
 
 namespace DotNet.WPF.DataContext
 {
-    [AddINotifyPropertyChangedInterface]
     public class MainPageDataContext : BaseViewDataContext
     {
         public string PageName { get; set; } = "Main page";

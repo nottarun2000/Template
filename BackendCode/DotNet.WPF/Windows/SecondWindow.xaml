@@ -7,6 +7,24 @@
         mc:Ignorable="d"
         Title="SecondWindow" Height="450" Width="800">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button Content="Connect/Disconnect with parent" Width="300" Height="40"
+                    Command="{Binding ConnectgRPC}"/>
+            <Button Content="Communicate with parent" Width="300" Height="40" Margin="30"
+                    Command="{Binding ChangeColor}"/>
+        </StackPanel>
+        
         
     </Grid>
 </Window>

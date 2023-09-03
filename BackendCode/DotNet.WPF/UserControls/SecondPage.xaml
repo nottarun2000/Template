@@ -12,11 +12,17 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="auto" />
         </Grid.RowDefinitions>
 
         <Button Grid.Column="0" Grid.Row="0" 
             Content="To Second page"  Height="40" Width="200" Margin="0,0,40,0"
             Command="{Binding ChangeCurrentPageCommand}" CommandParameter="MainPage"
             />
+        <Button Grid.Column="0" Grid.Row="1" 
+            Content="Start a child"  Height="40" Width="200" Margin="0,0,40,30"
+            Command="{Binding StartChild}"
+            />
+
     </Grid>
 </UserControl>

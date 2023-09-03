@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 using static DotNet.Backend.Communication.Messenger.MessengerClasses;
 using System.Windows.Input;
 using PropertyChanged;
+using System.Diagnostics;
 
 namespace DotNet.WPF.DataContext
 {
-    [AddINotifyPropertyChangedInterface]
     public class SecondPageDataContext : BaseViewDataContext
     {
         public string PageName { get; set; } = "Second page";
@@ -19,6 +19,8 @@ namespace DotNet.WPF.DataContext
         #region ICommand
 
         public ICommand ChangeCurrentPageCommand { get; set; }
+        public ICommand StartChild { get; set; }
+
 
         #endregion
 
@@ -26,6 +28,7 @@ namespace DotNet.WPF.DataContext
         {
             // Initialize the ChangeCurrentPageCommand with a RelayCommand.
             ChangeCurrentPageCommand = new RelayCommand(this.OnChangeCurrentPage, this.CanExecuteChangeCurrentPage);
+            StartChild = new RelayCommand(this.OnStartChild, this.CanExecute);
         }
 
 
@@ -34,6 +37,16 @@ namespace DotNet.WPF.DataContext
         {
             // Notify the Observer about a navigation request.
             ObserverMessenger.Observer.Instance.Notify(new NavigatePageTo((string)parameters));
+        }
+
+
+        public void OnStartChild(object obj)
+        { 
+            Process process = new Process();
+            process.StartInfo.FileName = Process.GetCurrentProcess().MainModule?.FileName;
+            process.StartInfo.Arguments = "randomargs";
+            process.Start();
+
         }
 
 
@@ -54,5 +67,11 @@ namespace DotNet.WPF.DataContext
             // If no exception occurs, return true to indicate it can be executed.
             return true;
         }
+
+        public bool CanExecute(object parameters)
+        {
+            return true;
+        }
+
     }
 }

@@ -11,4 +11,10 @@ namespace DotNet.WPF.ApplicationFunction
         Dark,
         Light
     }
+
+    public enum AppPage
+    { 
+        MainPage,
+        SecondPage
+    }
 }

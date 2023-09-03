@@ -4,9 +4,52 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:DotNet.WPF.Windows"
+        xmlns:dc="clr-namespace:DotNet.WPF.DataContext"
+        xmlns:view="clr-namespace:DotNet.WPF.UserControls"
         mc:Ignorable="d"
-        Title="AppMainWindow" Height="450" Width="800">
+        Title="AppMainWindow" Height="450" Width="800" Background="Gray" >
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10" />
+        </Grid.RowDefinitions>
 
+        <Grid Grid.Column="1" Grid.Row="1" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,10"  >
+                <Button Content="To Second page"  Height="40" Width="200" Margin="0,0,40,0"
+                    Command="{Binding Path=DataContext.ChangeCurrentPageCommand, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="SecondPage" 
+                    />
+                <Button Content="To Main page"  Height="40" Width="200"
+                    Command="{Binding Path=DataContext.ChangeCurrentPageCommand, RelativeSource={RelativeSource AncestorType=Grid}}" CommandParameter="MainPage" 
+                    />
+            </StackPanel>
+
+            <ContentControl Grid.Row="1" Grid.Column="0" Content="{Binding ActiveMainWindowDC}">
+                <ContentControl.Resources>
+                    <DataTemplate DataType="{x:Type dc:MainPageDataContext}">
+                        <view:MainPage />
+                    </DataTemplate>
+
+                    <DataTemplate DataType="{x:Type dc:SecondPageDataContext}">
+                        <view:SecondPage />
+                    </DataTemplate>
+                </ContentControl.Resources>
+            </ContentControl>
+
+        </Grid>
     </Grid>
 </Window>

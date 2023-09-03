@@ -18,7 +18,6 @@
 
   <ItemGroup>
     <Folder Include="DataProvider\" />
-    <Folder Include="Converter\" />
   </ItemGroup>
 
 </Project>

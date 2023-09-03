@@ -1,4 +1,6 @@
 ﻿using DotNet.Backend.Startup;
+using DotNet.WPF.DataContext;
+using DotNet.WPF.Windows;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,7 +26,10 @@ namespace DotNet.WPF
         public void ApplicationStartup(object sender, StartupEventArgs e)
         {
             // Initialize theme
-            // Open mainwindow
+
+            AppMainWindow appMainWindow = new AppMainWindow();
+            appMainWindow.DataContext = new AppMainWindowDataContext();
+            appMainWindow.Show();
 
         }
 

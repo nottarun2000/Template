@@ -12,7 +12,7 @@ namespace ObserverMessenger
     public delegate void ObserverDelegate(object instance);
 
     // Singleton Observer class to manage subscriptions
-    class Observer
+    public class Observer
     {
         // Singleton instance of the Observer class
         private static Observer instance;

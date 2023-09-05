@@ -24,12 +24,12 @@ namespace DotNet.Data.Data
             {
                 case DBContextType.SQLite:
                     // Configure SQLite database connection.
-                    DBContextConfigurer.ConfigureSQlite(builder, Constant.ConnectionString);
+                    builder=DBContextConfigurer.ConfigureSQlite(builder, Constant.ConnectionString);
                     break;
 
                 case DBContextType.SQLServer:
                     // Configure SQL Server database connection.
-                    DBContextConfigurer.ConfigureSQLServer(builder, Constant.ConnectionString);
+                    builder=DBContextConfigurer.ConfigureSQLServer(builder, Constant.ConnectionString);
                     break;
 
                 default:
@@ -49,10 +49,11 @@ namespace DotNet.Data.Data
         /// </summary>
         /// <param name="builder">DbContextOptionsBuilder instance.</param>
         /// <param name="ConnectionString">SQLite connection string.</param>
-        public static void ConfigureSQlite(DbContextOptionsBuilder<ApplicationDBContext> builder, string ConnectionString)
+        public static DbContextOptionsBuilder<ApplicationDBContext> ConfigureSQlite(DbContextOptionsBuilder<ApplicationDBContext> builder, string ConnectionString)
         {
             // Configure the DbContext to use SQLite with the provided connection string.
             builder.UseSqlite(ConnectionString);
+            return builder;
         }
 
         /// <summary>
@@ -60,10 +61,11 @@ namespace DotNet.Data.Data
         /// </summary>
         /// <param name="builder">DbContextOptionsBuilder instance.</param>
         /// <param name="ConnectionString">SQL Server connection string.</param>
-        public static void ConfigureSQLServer(DbContextOptionsBuilder<ApplicationDBContext> builder, string ConnectionString)
+        public static DbContextOptionsBuilder<ApplicationDBContext> ConfigureSQLServer(DbContextOptionsBuilder<ApplicationDBContext> builder, string ConnectionString)
         {
             // Configure the DbContext to use SQL Server with the provided connection string.
             builder.UseSqlServer(ConnectionString);
+            return builder;
         }
     }
 

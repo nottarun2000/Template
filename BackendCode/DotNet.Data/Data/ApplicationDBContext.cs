@@ -19,7 +19,7 @@ namespace DotNet.Data.Data
         /// <param name="options">The DbContextOptions to be used for configuration.</param>
         public ApplicationDBContext(DbContextOptions<ApplicationDBContext> options) : base(options)
         {
-
+            Database.Migrate();
         }
 
         #region DBSet
@@ -29,8 +29,7 @@ namespace DotNet.Data.Data
         // public DbSet<User> Users { get; set; }
         // public DbSet<Order> Orders { get; set; }
         public DbSet<DBModel.Class> Orders { get; set; }
-
-
+        public DbSet<DBModel.EmployeeDetail> Employees{ get;set;}
         #endregion
 
         /// <summary>
@@ -42,6 +41,9 @@ namespace DotNet.Data.Data
         {
             // Create and return a new instance of ApplicationDBContext with configured options.
             return new ApplicationDBContext(DBContextOptionsFactory.GetOptions());
+        }
+        protected override void OnConfiguring(DBContextOptionsBuilder optionsBuilder){
+            optionsBuilder.UseSqlite(Constant.ConnectionString);
         }
     }
 

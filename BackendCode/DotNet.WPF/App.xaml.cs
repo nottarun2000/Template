@@ -26,12 +26,14 @@ namespace DotNet.WPF
 
         public void ApplicationStartup(object sender, StartupEventArgs e)
         {
+            var container=new Bootstrapper().ContainerBootstrap();
+            var mainpagedataprovider=container.Resolve<IMainPageDataProvider>();
             // Initialize theme
 
             if (e.Args.Count() == 0)  // starting server
             {
                 AppMainWindow appMainWindow = new AppMainWindow();
-                var temp = new AppMainWindowDataContext();
+                var temp = new AppMainWindowDataContext(mainpagedataprovider);
                 temp.StartgRPC(null);
                 appMainWindow.DataContext = temp;
                 appMainWindow.Show();

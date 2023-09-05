@@ -17,15 +17,16 @@ namespace DotNet.WPF.DataContext
     {
         public BaseViewDataContext ActiveMainWindowDC { get; set; }
         public string CurrentPage { get; set; }
-
+        private IMainPageDataProvider _mainpagedataprovider;
         #region ICommand
 
         public ICommand ChangeCurrentPageCommand { get; set; }
 
         #endregion
 
-        public AppMainWindowDataContext()
+        public AppMainWindowDataContext(IMainPageDataProvider mainpagedataprovider)
         {
+            _mainpagedataprovider=mainpagedataprovider;
             // Initialize the ActiveMainWindowDC with the MainPageDataContext.
             ActiveMainWindowDC = new MainPageDataContext();
             CurrentPage = "MainPage";

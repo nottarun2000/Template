@@ -12,9 +12,27 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
+            <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button Grid.Column="0" Grid.Row="0" 
+        <Grid Grid.Row="0">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*" />
+             <ColumnDefinition Width="1*" />
+              <ColumnDefinition Width="2*" />
+               <ColumnDefinition Width="1*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="auto" />
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="1" Text="Employee_Id"/>
+        <TextBox Grid.Row="0" Grid.Column="2" Margin="40,0,0,20" Text="{Binding Employee_id}"/>
+        <TextBlock Grid.Row="1" Grid.Column="1" Text="Employee_Name"/>
+        <TextBox Grid.Row="1" Grid.Column="2" Margin="40,0,0,20" Text="{Binding Employee_Name}"/>
+        </Grid>
+
+        <Button Grid.Column="0" Grid.Row="1" 
             Content="To Second page"  Height="40" Width="200" Margin="0,0,40,0"
                 Command="{Binding ChangeCurrentPageCommand}" CommandParameter="SecondPage"
                 />

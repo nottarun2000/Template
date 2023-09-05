@@ -19,7 +19,12 @@ namespace DotNet.Backend.Startup
         {
             // Create a ContainerBuilder to configure dependency injection.
             ContainerBuilder builder = new ContainerBuilder();
-
+            builder.RegisterType<MainPageDataProvider>().As<IMainPageDataProvider>().InstancePerLifetimeScope();
+            builder.RegisterType<SQLiteHelper>().As<ISQLiteHelper>();
+            builder.RegisterType<ApplicationDBContext>().
+            WithParameter("options",DBContextOptionsFactory.GetOptions()).As<IApplicationDBContext>();
+            builder.RegisterType<ApplicationDBContext>().
+            WithParameter("options",DBContextOptionsFactory.GetOptions()).InstancePerLifetimeScope();
             // You can register your dependencies here using builder.RegisterType.
 
             // Example: Register a dependency as an interface.

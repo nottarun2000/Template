@@ -14,6 +14,25 @@ namespace DotNet.WPF.DataContext
 {
     public class MainPageDataContext : BaseViewDataContext
     {
+        private string _employee_id;
+        private string _employee_name;
+        public string Employee_id{
+            get{
+                return _employee_id;
+            }
+            set{
+                _employee_id=value;
+            }
+        }
+        public string Employee_Name{
+            get{
+                return _employee_name;
+            }
+            set{
+                _employee_name=value;
+            }
+        }
+        private IMainPageDataProvider _mainpagedataprovider;
         public string PageName { get; set; } = "Main page";
 
         #region ICommand
@@ -22,8 +41,9 @@ namespace DotNet.WPF.DataContext
 
         #endregion
 
-        public MainPageDataContext()
+        public MainPageDataContext(IMainPageDataProvider mainpagedataprovider)
         {
+            _mainpagedataprovider=mainpagedataprovider
             // Initialize the ChangeCurrentPageCommand with a RelayCommand.
             ChangeCurrentPageCommand = new RelayCommand(this.OnChangeCurrentPage, this.CanExecuteChangeCurrentPage);
         }
@@ -32,6 +52,10 @@ namespace DotNet.WPF.DataContext
         // Method to handle changing the current page.
         public void OnChangeCurrentPage(object parameters)
         {
+            EmployeeDetail employeedetail=new EmployeeDetail();
+            employeedetail.Employee_Id=Int32.Parse(Employee_id);
+            employeedetail.Employee_Name=Employee_Name;
+            _mainpagedataprovider.InsertEmployeeData(employeedetail);
             // Notify the Observer about a navigation request.
             ObserverMessenger.Observer.Instance.Notify(new NavigatePageTo((string)parameters));
         }
